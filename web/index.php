@@ -16,7 +16,10 @@
 </body>
 
 <?php
-    include("views/main.php");
+
+    require "../controllers/PageController.php";
+    $controller = new PageController();
+    $controller->renderPage();
 ?>
 
 </html>
