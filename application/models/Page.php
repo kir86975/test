@@ -7,7 +7,7 @@
  */
 class Page extends Model
 {
-    public function getData()
+    public function getData($params)
     {
 
     }

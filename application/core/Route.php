@@ -11,13 +11,13 @@ class Route
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
         // получаем имя контроллера
-        if ( !empty($routes[1]) )
+        if (!empty($routes[1]))
         {
             $controllerName = $routes[1];
         }
 
         // получаем имя экшена
-        if ( !empty($routes[2]) )
+        if (!empty($routes[2]))
         {
             $actionWithParams = explode('?', $routes[2]);
             $actionName = $actionWithParams[0];
@@ -46,6 +46,7 @@ class Route
         }
         else
         {
+            include "../application/controllers/PageController.php";
             Route::ErrorPage404();
             exit;
         }
@@ -65,9 +66,8 @@ class Route
 
     }
 
-    function ErrorPage404()
+    static function ErrorPage404()
     {
-        include "../application/controllers/PageController.php";
         $controller = new PageController();
         $controller->actionPageNotFound();
     }
