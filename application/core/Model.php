@@ -2,7 +2,7 @@
 
 class Model
 {
-    public function getData()
+    public function getData($params)
     {
     }
 }

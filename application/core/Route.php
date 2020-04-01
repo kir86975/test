@@ -19,17 +19,18 @@ class Route
         // получаем имя экшена
         if ( !empty($routes[2]) )
         {
-            $actionName = $routes[2];
+            $actionWithParams = explode('?', $routes[2]);
+            $actionName = $actionWithParams[0];
+            $params = explode('&', $actionWithParams[1]);
+            extract($params);
         }
 
         // добавляем префиксы
         $modelName = $controllerName;
         $controllerName = $controllerName.'Controller';
+        $modelFile = $actionName.'.php';
         $actionName = 'action'.$actionName;
 
-        // подцепляем файл с классом модели (файла модели может и не быть)
-
-        $modelFile = strtolower($modelName).'.php';
         $modelPath = "../application/models/".$modelFile;
         if(file_exists($modelPath))
         {
@@ -46,6 +47,7 @@ class Route
         else
         {
             Route::ErrorPage404();
+            exit;
         }
 
         // создаем контроллер
@@ -65,9 +67,8 @@ class Route
 
     function ErrorPage404()
     {
-//        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-//        header('HTTP/1.1 404 Not Found');
-//        header("Status: 404 Not Found");
-//        header('Location:'.$host.'404');
+        include "../application/controllers/PageController.php";
+        $controller = new PageController();
+        $controller->actionPageNotFound();
     }
 }

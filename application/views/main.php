@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My test site</title>
+    <title>Мой тестовый сайт</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -10,6 +10,11 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!--    Сохраняем содержимое страницы в файл без отправки на сервер-->
+    <script src="/javascript/FileSaver/FileSaver.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,7 +25,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="page">WebSiteName</a>
+                    <a class="navbar-brand" href="http://test/page">Тест</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <?php
@@ -44,15 +49,11 @@
                                 strpos($link, $request) !== false && strpos($request, '/page/') !== false;
 
                             $isPageWithoutAction =
-                                strpos($request, '/page') !== false && strpos($request, '/page/') === false;
+                                strpos($link, $request) !== false && strpos($link, '/page/') === false;
 
                             $active = $isPageWithActionActive || $isPageWithoutAction ? 'class="active"' : '';
                             echo '<li '.$active.'><a href="'.$link.'">'.$linkName.'</a></li>';
                         }
-//                            class="active"
-//                        $active = strpos($request, )
-//                        echo '<li><a href="'.$addressPrefix.'/page">Home</a></li>';
-
                     ?>
                 </ul>
             </div>
